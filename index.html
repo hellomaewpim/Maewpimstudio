@@ -798,8 +798,8 @@
             h1 { font-size: 1.35rem !important; line-height: 1.4 !important; }
             h2 { font-size: 1.2rem !important; text-align: left !important; }
             h3 { font-size: 1rem !important; }
-            .section-desc { text-align: left; margin-left: 0; margin-right: 0; font-size: 0.92rem; }
-            .hero { padding: 120px 0 40px; }
+            .section-desc { text-align: left; margin-left: 0; margin-right: 0; font-size: 0.92rem; word-break: keep-all; overflow-wrap: break-word; }
+            .hero { padding: 160px 0 40px; }
             .hero-grid { gap: 12px; align-items: flex-start; }
             .hero-content h1 { font-size: 1.35rem !important; line-height: 1.4 !important; }
             .hero-content h1::after { content: none; }
@@ -904,7 +904,7 @@
 <!-- ===== STICKER ===== -->
 <section id="sticker" style="background: #f3f36b; padding-top: 80px; padding-bottom: 80px;">
     <h2 class="fade-up">✦ Official Merchandise</h2>
-    <p class="section-desc fade-up">ผลงานออกแบบสติกเกอร์ UV DTF ลาย LUCA และ World Domination<br>สติ๊กเกอร์ติดแก้ว กันน้ำ กันรอยสัมผัสนูน</p>
+    <p class="section-desc fade-up">ผลงานออกแบบสติกเกอร์ UV DTF ลาย LUCA Working Fast Mode และ World Domination สติกเกอร์ติดแก้ว กันน้ำ กันรอยสัมผัสนูน</p>
     <div class="fade-up" style="max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.10);">
         <img src="sticker.png" alt="Sticker Sheet – LUCA : World Domination & LUCA : Working Fast mode" style="width: 100%; height: auto; display: block;">
     </div>
@@ -1530,6 +1530,17 @@
     window.onload = () => {
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     };
+    // ===== FIX HERO PADDING BASED ON ACTUAL HEADER HEIGHT =====
+    function fixHeroPadding() {
+        const header = document.querySelector('header');
+        const hero = document.querySelector('.hero');
+        if (header && hero) {
+            const headerH = header.offsetHeight;
+            hero.style.paddingTop = (headerH + 24) + 'px';
+        }
+    }
+    fixHeroPadding();
+    window.addEventListener('resize', fixHeroPadding);
 </script>
 </body>
 </html>
